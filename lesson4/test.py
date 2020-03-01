@@ -1,25 +1,25 @@
 import os
 import sys # sys.exit() で処理を終わらすのに使用する
-from lib import csv_manager
+from lib import excel_operator
 
 def main():
     # 実行ファイルのカレントパスを取得
     current_path = os.path.dirname(__file__)
 
     # CSV 操作クラスを生成
-    csv = csv_manager.CsvOperator()
+    excel = excel_operator.ExcelOperator()
 
     # 入力先パスを生成
     input_path = os.path.join(current_path, 'input')
 
     # ファイル入力
-    df = csv.input(input_path, 'sample_sjis-line100.xlsx')
+    df = excel.input(input_path, 'sample.xlsx')
 
     # 出力先パスを生成
     output_path = os.path.join(current_path, 'output')
 
     # ファイル出力
-    csv.output(df, output_path, 'sample_sjis.csv')
+    excel.output(df, output_path, 'sample.xlsx')
 
 if __name__ == '__main__':
     main()
