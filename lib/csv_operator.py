@@ -1,28 +1,17 @@
 import os
 import pandas as pd
 import csv
+from lib.file_operator import FileOperator
 
 # CSV 操作クラス
-class CsvOperator:
-    output_encoding = 'cp932'   # cp932 or utf8
-    output_format = 'csv'       # CSV or TSV
+class CsvOperator(FileOperator):
+    def __init__(self):
+        super().__init__()
+        self.output_encoding = 'utf8'   # utf8 or cp932
+        self.output_format = 'csv'      # csv or tsv
 
-    def input(self, path, fname):
-        # フルパス生成
-        file_path = os.path.join(path, fname)
-        print('入力ファイル：' + file_path)
-        # ファイル読込
-        return self.read(file_path)
-
-    def output(self, df, path, fname):
-        # ディレクトリが存在しない場合は作成
-        if os.path.exists(path) != True:
-            os.mkdir(path)
-        # フルパス生成
-        file_path = os.path.join(path, fname)
-        print('出力ファイル：' + file_path)
-        # ファイル書込
-        return self.write(df, file_path)
+    def getOutputFileName(self):
+        return 'sample.csv'
 
     def read(self, file_path):
         # pandas の関数で読み込み
@@ -47,9 +36,3 @@ class CsvOperator:
             quoting = csv.QUOTE_ALL,            # すべてをタブルクオートさせて出力
             sep = sep,                          # 区切り文字
         )
-
-    def setOutputEncoding(self, encoding):
-        self.output_encoding = encoding
-
-    def setOutputFormat(self, format):
-        self.output_format = format
