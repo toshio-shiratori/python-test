@@ -1,0 +1,12 @@
+.title {
+    font-size: 120%;
+}
+
+form {
+    padding-left: 2em;
+    border: black;
+}
+
+.field {
+    padding-left: 1em;
+}
