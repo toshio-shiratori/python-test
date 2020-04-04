@@ -60,9 +60,10 @@ def create_users_table(conn, new):
     # データベースへコミット。これで変更が反映される。
     conn.commit()
 
-def insert_user(conn, info):
+def insert_user(conn, dict):
     # パスワードのハッシュ化
-    password=hashlib.sha256(info['password'].encode('utf-8')).hexdigest()
+    password=hashlib.sha256(dict['password'].encode('utf-8')).hexdigest()
+    dict['password']=password
 
     # sqlite を操作するカーソルオブジェクトを作成
     cur = conn.cursor()
@@ -73,11 +74,11 @@ def insert_user(conn, info):
             email,
             password
         ) VALUES (
-            '{0}',
-            '{1}',
-            '{2}'
+            '{name}',
+            '{email}',
+            '{password}'
         )
-    '''.format(info['name'], info['email'], password)
+    '''.format(**dict)
     sql_execute(cur, sql)
 
     # データベースへコミット。これで変更が反映される。

@@ -1,4 +1,4 @@
 .vscode/**
 **/output/**
 __pycache__
-**/TEST.db
+**.db
