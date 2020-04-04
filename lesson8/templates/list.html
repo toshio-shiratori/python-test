@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="title">
+  {{ title }}
+</h1>
+<ul>
+  <li><a href="/">戻る</a></li>
+</ul>
+<div>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>ニックネーム</th>
+      <th>メールアドレス</th>
+    </tr>
+{% for item in items %}
+    <tr>
+      <td>{{ item.id }}</td>
+      <td>{{ item.name }}</td>
+      <td>{{ item.email }}</td>
+    </tr>
+{% endfor %}
+  </table>
+</div>
+{% endblock %}
