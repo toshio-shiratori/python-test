@@ -13,6 +13,9 @@ class FileOperator(metaclass=ABCMeta):
     def input(self, path, fname):
         # フルパス生成
         file_path = os.path.join(path, fname)
+        return self.direct_input(file_path)
+
+    def direct_input(self, file_path):
         print('入力ファイル名：' + file_path)
         # ファイル読込
         return self.read(file_path)
@@ -23,6 +26,9 @@ class FileOperator(metaclass=ABCMeta):
             os.mkdir(path)
         # フルパス生成
         file_path = os.path.join(path, fname)
+        return self.direct_output(df, file_path)
+
+    def direct_output(self, df, file_path):
         print('出力ファイル名：' + file_path)
         # ファイル書込
         return self.write(df, file_path)
